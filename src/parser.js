@@ -350,6 +350,10 @@ module.exports = {
     });
   },
 
+  assignToClass: function(compound, child) {
+    compound.compounds[child.id] = child;
+  },
+
   extractPageSections: function(page, elements) {
     elements.forEach(function(element) {
       if (element['#name'] == 'sect1' || element['#name'] == 'sect2' || element['#name'] == 'sect3') {
@@ -448,24 +452,6 @@ module.exports = {
           compound.groupid = compound.id;
           compound.groupname = compound.name;
         }
-
-        // handle innerclass for groups and namespaces
-        if (compounddef.innerclass) {
-          compounddef.innerclass.forEach(function (innerclassdef) {
-            if (compound.kind == 'namespace') {
-              // log.verbose('Assign ' + innerclassdef.$.refid + ' to namespace ' + compound.name);
-
-              if (this.references[innerclassdef.$.refid])
-                this.assignToNamespace(compound, this.references[innerclassdef.$.refid]);
-            }
-            else if (compound.kind == 'group') {
-              // log.verbose('Assign ' + innerclassdef.$.refid + ' to group ' + compound.name);
-              if (this.references[innerclassdef.$.refid])
-                this.assignClassToGroup(compound, this.references[innerclassdef.$.refid]);
-            }
-          }.bind(this));
-        }
-
         // handle innernamespace for groups and namespaces
         if (compounddef.innernamespace) {
           compound.innernamespaces = [];
@@ -479,6 +465,35 @@ module.exports = {
         break;
       default:
         console.assert(true);
+    }
+
+    switch(compound.kind) {
+      case 'class':
+      case 'interface':
+      case 'enum':
+      case 'namespace':
+      case 'group':
+        // handle innerclass for groups and namespaces and 'class'.
+        if (compounddef.innerclass) {
+          compounddef.innerclass.forEach(function (innerclassdef) {
+            if (compound.kind == 'namespace') {
+              // log.verbose('Assign ' + innerclassdef.$.refid + ' to namespace ' + compound.name);
+
+              if (this.references[innerclassdef.$.refid])
+                this.assignToNamespace(compound, this.references[innerclassdef.$.refid]);
+            } else if (compound.kind == 'group') {
+              // log.verbose('Assign ' + innerclassdef.$.refid + ' to group ' + compound.name);
+              if (this.references[innerclassdef.$.refid])
+                this.assignClassToGroup(compound, this.references[innerclassdef.$.refid]);
+            } else if (compound.kind == 'class' || compound.kind == 'interface' || compound.kind == 'enum') {
+              if (this.references[innerclassdef.$.refid])
+                this.assignToClass(compound, this.references[innerclassdef.$.refid]);
+            }
+          }.bind(this));
+        }
+        break;
+      default:
+        break;
     }
 
     return;
