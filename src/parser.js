@@ -281,9 +281,9 @@ module.exports = {
         break;
 
       case 'property':
-        m = m.concat(['{', member.kind, '} ']);
-        m = m.concat(toMarkdown(memberdef.prot), ' ');
-         m = m.concat(toMarkdown(memberdef.type), ' ');
+        //m = m.concat(['{', member.kind, '} ']);
+        m = m.concat(memberdef.prot, ' ');
+        m = m.concat(memberdef.type, ' ');
         // m = m.concat(memberdef.name[0]._);
         m = m.concat(markdown.refLink(member.name, member.refid));
         break;
