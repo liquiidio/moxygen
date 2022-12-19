@@ -15,8 +15,8 @@
 
 ## Summary
 
- Members                        | Descriptions                                
---------------------------------|---------------------------------------------
+ Members                                | Descriptions                                
+----------------------------------------|---------------------------------------------
 {{#each filtered.compounds}}{{cell proto}}        | {{cell summary}}
 {{/each}}{{#each filtered.members}}{{cell proto}} | {{cell summary}}
 {{/each}}
@@ -24,7 +24,7 @@
 ## Members
 
 {{#each filtered.compounds}}
-### {{title proto}} {{anchor refid}}
+##### {{title proto}} {{anchor refid}}
 
 {{briefdescription}}
 
@@ -32,7 +32,7 @@
 {{/each}}
 
 {{#each filtered.members}}
-### {{title proto}} {{anchor refid}}
+##### {{title proto}} {{anchor refid}}
 
 {{#if enumvalue}}
  Values                         | Descriptions                                
