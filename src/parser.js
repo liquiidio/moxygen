@@ -248,7 +248,7 @@ module.exports = {
           }
           m.push('>  \n');
         }
-        // m = m.concat(memberdef.$.inline == 'yes' ? ['inline', ' '] : []);
+        m = m.concat(memberdef.$.inline == 'yes' ? ['inline', ' '] : []);
         m = m.concat(memberdef.$.static == 'yes' ? ['static', ' '] : []);
         m = m.concat(memberdef.$.virt == 'virtual' ? ['virtual', ' '] : []);
         m = m.concat(toMarkdown(memberdef.type), ' ');
@@ -282,7 +282,6 @@ module.exports = {
 
       case 'property':
         m = m.concat(['{', member.kind, '} ']);
-       // m = m.concat(toMarkdown(memberdef.prot), ' ');
         m = m.concat(toMarkdown(memberdef.type), ' ');
         // m = m.concat(memberdef.name[0]._);
         m = m.concat(markdown.refLink(member.name, member.refid));
@@ -315,11 +314,11 @@ module.exports = {
 
   assignToNamespace: function (compound, child) {
     if (compound.name != child.namespace)
-        console.assert('namespace mismatch: ', compound.name, '!=', child.namespace);
+      console.assert('namespace mismatch: ', compound.name, '!=', child.namespace);
 
     // namespaces take ownership of the child compound
     if (child.parent)
-        delete child.parent.compounds[child.id];
+      delete child.parent.compounds[child.id];
     compound.compounds[child.id] = child;
     child.parent = compound;
   },
@@ -396,22 +395,22 @@ module.exports = {
         //   case 'protected-func':
         //   case 'private-attrib':
         //   case 'private-func':
-            if (section.memberdef) {
-              section.memberdef.forEach(function (memberdef) {
-                var member = this.references[memberdef.$.id];
+        if (section.memberdef) {
+          section.memberdef.forEach(function (memberdef) {
+            var member = this.references[memberdef.$.id];
 
-                if (compound.kind == 'group') {
-                  member.groupid = compound.id;
-                  member.groupname = compound.name;
-                }
-                else if (compound.kind == 'file') {
-                  // add free members defined inside files in the default
-                  // namespace to the root compound
-                  this.root.members.push(member);
-                }
-                this.parseMember(member, section.$['kind'], memberdef);
-              }.bind(this));
+            if (compound.kind == 'group') {
+              member.groupid = compound.id;
+              member.groupname = compound.name;
             }
+            else if (compound.kind == 'file') {
+              // add free members defined inside files in the default
+              // namespace to the root compound
+              this.root.members.push(member);
+            }
+            this.parseMember(member, section.$['kind'], memberdef);
+          }.bind(this));
+        }
         //     break;
         //
         //   default:
@@ -454,17 +453,17 @@ module.exports = {
         // handle innerclass for groups and namespaces
         if (compounddef.innerclass) {
           compounddef.innerclass.forEach(function (innerclassdef) {
-              if (compound.kind == 'namespace') {
-                // log.verbose('Assign ' + innerclassdef.$.refid + ' to namespace ' + compound.name);
+            if (compound.kind == 'namespace') {
+              // log.verbose('Assign ' + innerclassdef.$.refid + ' to namespace ' + compound.name);
 
-                if (this.references[innerclassdef.$.refid])
-                  this.assignToNamespace(compound, this.references[innerclassdef.$.refid]);
-              }
-              else if (compound.kind == 'group') {
-                // log.verbose('Assign ' + innerclassdef.$.refid + ' to group ' + compound.name);
-                if (this.references[innerclassdef.$.refid])
-                  this.assignClassToGroup(compound, this.references[innerclassdef.$.refid]);
-              }
+              if (this.references[innerclassdef.$.refid])
+                this.assignToNamespace(compound, this.references[innerclassdef.$.refid]);
+            }
+            else if (compound.kind == 'group') {
+              // log.verbose('Assign ' + innerclassdef.$.refid + ' to group ' + compound.name);
+              if (this.references[innerclassdef.$.refid])
+                this.assignClassToGroup(compound, this.references[innerclassdef.$.refid]);
+            }
           }.bind(this));
         }
 
