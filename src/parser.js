@@ -248,11 +248,11 @@ module.exports = {
           }
           m.push('>  \n');
         }
-        m = m.concat(memberdef.$.inline == 'yes' ? ['inline', ' '] : []);
+        //m = m.concat(memberdef.$.inline == 'yes' ? ['inline', ' '] : []);
         m = m.concat(memberdef.$.static == 'yes' ? ['static', ' '] : []);
         m = m.concat(memberdef.$.virt == 'virtual' ? ['virtual', ' '] : []);
         m = m.concat(toMarkdown(memberdef.type), ' ');
-        m = m.concat(memberdef.$.explicit  == 'yes' ? ['explicit', ' '] : []);
+        //m = m.concat(memberdef.$.explicit  == 'yes' ? ['explicit', ' '] : []);
         // m = m.concat(memberdef.name[0]._);
         m = m.concat(markdown.refLink(member.name, member.refid));
         m = m.concat('(');
