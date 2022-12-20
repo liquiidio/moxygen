@@ -69,7 +69,9 @@ module.exports = {
       throw 'Template "' + template + '" not found in your templates directory.';
     }
 
-    return this.templates[template](compound).replace(/(\r\n|\r|\n){3,}/g, '$1\n');
+    var test = this.templates[template](compound).replace(/(\r\n|\r|\n){3,}/g, '$1\n');
+    //log.verbose('test ' + test);
+    return test;
   },
 
   renderArray: function (compounds) {

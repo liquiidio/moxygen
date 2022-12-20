@@ -17,14 +17,14 @@
 
  Members                                | Descriptions                                
 ----------------------------------------|---------------------------------------------
-{{#each filtered.compounds}}{{cell proto}}        | {{cell summary}}
+{{#each filtered.compounds}}{{cell shortproto}}        | {{cell summary}}
 {{/each}}{{#each filtered.members}}{{cell proto}} | {{cell summary}}
 {{/each}}
 
 ## Members
 
 {{#each filtered.compounds}}
-##### {{title proto}} {{anchor refid}}
+##### {{title shortproto}} {{anchor refid}}
 
 {{briefdescription}}
 

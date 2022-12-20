@@ -310,6 +310,7 @@ module.exports = {
     }
 
     member.proto = helpers.inline(m);
+    //log.verbose('member.proto ' + member.proto);
   },
 
   assignToNamespace: function (compound, child) {
@@ -424,6 +425,9 @@ module.exports = {
     }
 
     compound.proto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name, compound.refid)]);
+    compound.shortproto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name.split('::').slice(-1), compound.refid)]);
+    log.verbose('compound.proto ' + compound.proto);
+    log.verbose('compound.shortproto ' + compound.shortproto);
 
     // kind specific parsing
     switch (compound.kind) {

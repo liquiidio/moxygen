@@ -9,14 +9,14 @@
  Members                                | Descriptions                                
 ----------------------------------------|---------------------------------------------
 {{#each filtered.members}}{{cell proto}}            | {{cell summary}}
-{{/each}}{{#each filtered.compounds}}{{cell proto}} | {{cell summary}}
+{{/each}}{{#each filtered.compounds}}{{cell shortproto}} | {{cell summary}}
 {{/each}}
 
 {{#if filtered.members}}
 ## Members
 
 {{#each filtered.members}}
-##### {{title proto}} {{anchor refid}}
+##### {{title shortproto}} {{anchor refid}}
 
 {{#if enumvalue}}
  Values                         | Descriptions                                
