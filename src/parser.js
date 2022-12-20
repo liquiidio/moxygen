@@ -223,7 +223,6 @@ module.exports = {
   },
 
   parseMember: function (member, section, memberdef) {
-    log.verbose('Processing member ' + member.kind + ' ' + member.name);
     member.section = section;
     copy(member, 'briefdescription', memberdef);
     copy(member, 'detaileddescription', memberdef);
@@ -285,7 +284,6 @@ module.exports = {
         m = m.concat(toMarkdown(memberdef.type), ' ');
         // m = m.concat(memberdef.name[0]._);
         m = m.concat(markdown.refLink(member.name, member.refid));
-        log.verbose('property member-array: ' + m.toString());
         break;
 
       case 'enum':
@@ -311,7 +309,6 @@ module.exports = {
     }
 
     member.proto = helpers.inline(m);
-    log.verbose('member.proto: ' + member.proto);
   },
 
   assignToNamespace: function (compound, child) {
