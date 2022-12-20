@@ -309,7 +309,7 @@ module.exports = {
         break;
     }
 
-    member.proto = helpers.inline(m);
+    member.proto = helpers.inline(m).replace(/\s+/g, ' ').trim();
     //log.verbose('member.proto ' + member.proto);
   },
 
@@ -424,8 +424,8 @@ module.exports = {
       }.bind(this));
     }
 
-    compound.proto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name, compound.refid)]);
-    compound.shortproto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name.split('::').slice(-1), compound.refid)]);
+    compound.proto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name, compound.refid)]).replace(/\s+/g, ' ').trim();
+    compound.shortproto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name.split('::').slice(-1), compound.refid)]).replace(/\s+/g, ' ').trim();
     log.verbose('compound.proto ' + compound.proto);
     log.verbose('compound.shortproto ' + compound.shortproto);
 

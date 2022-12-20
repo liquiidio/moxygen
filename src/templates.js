@@ -85,12 +85,12 @@ module.exports = {
 
     // Escape the code for a table cell.
     handlebars.registerHelper('cell', function(code) {
-      return code.replace(/\|/g, '\\|').replace(/\n/g, '<br/>');
+      return code.replace(/\|/g, '\\|').replace(/\n/g, '<br/>').replace(/\s+/g, ' ').trim();
     });
 
     // Escape the code for a titles.
     handlebars.registerHelper('title', function(code) {
-      return code.replace(/\n/g, '<br/>');
+      return code.replace(/\n/g, '<br/>').replace(/\s+/g, ' ').trim();
     });
 
     // Generate an anchor for internal links

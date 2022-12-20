@@ -24,7 +24,7 @@
 ## Members
 
 {{#each filtered.compounds}}
-##### {{title proto}} {{anchor refid}}
+##### {{title shortproto}} {{anchor refid}}
 
 {{briefdescription}}
 
