@@ -277,6 +277,7 @@ module.exports = {
         m = m.concat(toMarkdown(memberdef.type), ' ');
         // m = m.concat(memberdef.name[0]._);
         m = m.concat(markdown.refLink(member.name, member.refid));
+        m = m.concat(memberdef.initializer ? memberdef.initializer[0]._ : '');
         break;
 
       case 'property':
@@ -430,6 +431,8 @@ module.exports = {
       case 'struct':
       case 'union':
       case 'typedef':
+      case 'interface':
+      case 'enum':
 
         // set namespace reference
         var nsp = compound.name.split('::');
@@ -458,7 +461,8 @@ module.exports = {
           compounddef.innernamespace.forEach(function (namespacedef) {
             if (compound.kind == 'group') {
               // log.verbose('Assign namespace ' + namespacedef.$.refid + ' to group ' + compound.name);
-              this.assignNamespaceToGroup(compound, this.references[namespacedef.$.refid]);
+              if (this.references[namespacedef.$.refid])
+                this.assignNamespaceToGroup(compound, this.references[namespacedef.$.refid]);
             }
           }.bind(this));
         }
@@ -540,7 +544,9 @@ module.exports = {
           return;
         }
         this.root.kind = 'index';
-        this.parseIndex(this.root, result.doxygenindex.compound, options);
+        this.parseIndex(this.root, result.doxygenindex.compound.sort(function(a, b){
+          return b.$.refid.length - a.$.refid.length;
+        }), options);
         callback(null, this.root); // TODO: return errors properly
       }.bind(this));
     }.bind(this));
