@@ -16,7 +16,7 @@
 ## Members
 
 {{#each filtered.members}}
-##### {{title shortproto}} {{anchor refid}}
+##### {{title proto}} {{anchor refid}}
 
 {{#if enumvalue}}
  Values                         | Descriptions                                
