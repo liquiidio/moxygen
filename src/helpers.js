@@ -75,13 +75,13 @@ module.exports = {
       if (page) {
         if (page.refid == compound.refid)
           return '#' + refid;
-        return this.compoundPath(page, options) + '#' + refid;
+        return this.compoundPath(page, options);// + '#' + refid;
       }
 
       if (options.groups) {
         if (compound.groupid && compound.groupid == ref.groupid)
           return '#' + refid;
-        return this.compoundPath(ref, options) + '#' + refid;
+        return this.compoundPath(ref, options);// + '#' + refid;
       } else if (options.classes) {
         var filtered = ['namespace', 'class', 'struct'];
         if (options.language == 'java') {
@@ -90,17 +90,18 @@ module.exports = {
         var dest = this.findParent(ref, filtered);
         if (!dest || compound.refid == dest.refid)
           return '#' + refid;
-        return this.compoundPath(dest, options) + '#' + refid;
+        return this.compoundPath(dest, options);// + '#' + refid;
       } else {
         if (compound.kind == 'page')
-          return this.compoundPath(compound.parent, options) + '#' + refid;
+          return this.compoundPath(compound.parent, options);// + '#' + refid;
         return '#' + refid;
       }
     }.bind(this));
   },
 
   compoundPath: function(compound, options) {
-    if (compound.kind == 'page') {
+    return compound.name.replace(/\:/g, '-') + ".md";
+    /*if (compound.kind == 'page') {
       return path.dirname(options.output) + "/page-" + compound.name + ".md";
     } else if (options.groups) {
       return util.format(options.output, compound.groupname);
@@ -108,7 +109,7 @@ module.exports = {
       return util.format(options.output, compound.name.replace(/\:/g, '-').replace('<', '(').replace('>', ')'));
     } else {
       return options.output;
-    }
+    }*/
   },
 
   writeCompound: function(compound, contents, references, options) {

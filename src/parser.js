@@ -426,8 +426,9 @@ module.exports = {
 
     compound.proto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name, compound.refid)]).replace(/\s+/g, ' ').trim();
     compound.shortproto = helpers.inline([compound.kind, ' ', markdown.refLink(compound.name.split('::').slice(-1), compound.refid)]).replace(/\s+/g, ' ').trim();
-    log.verbose('compound.proto ' + compound.proto);
-    log.verbose('compound.shortproto ' + compound.shortproto);
+    //log.verbose('compound.refid ' + compound.refid);
+    //log.verbose('compound.proto ' + compound.proto);
+    //log.verbose('compound.shortproto ' + compound.shortproto);
 
     // kind specific parsing
     switch (compound.kind) {
