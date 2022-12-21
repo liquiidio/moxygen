@@ -5,9 +5,9 @@
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `enum ` [`SortStrategy`](#namespace_atomic_assets_api_client_1a1a2688049f7c9dc4f77213ca78b6de0f)            | 
-`class ` [`AtomicAssetsApiClient::AtomicAssetsApiFactory`](test/test-AtomicAssetsApiClient--AtomicAssetsApiFactory.md#class_atomic_assets_api_client_1_1_atomic_assets_api_factory) | 
-`class ` [`AtomicAssetsApiClient::LogsDto`](test/test-AtomicAssetsApiClient--LogsDto.md#class_atomic_assets_api_client_1_1_logs_dto) | 
-`class ` [`AtomicAssetsApiClient::StatsDto`](test/test-AtomicAssetsApiClient--StatsDto.md#class_atomic_assets_api_client_1_1_stats_dto) | 
+`class ` [`AtomicAssetsApiClient::AtomicAssetsApiFactory`](AtomicAssetsApiClient--AtomicAssetsApiFactory.md) | 
+`class ` [`AtomicAssetsApiClient::LogsDto`](AtomicAssetsApiClient--LogsDto.md) | 
+`class ` [`AtomicAssetsApiClient::StatsDto`](AtomicAssetsApiClient--StatsDto.md) | 
 
 ## Members
 

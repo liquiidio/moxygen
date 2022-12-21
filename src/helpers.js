@@ -112,8 +112,20 @@ module.exports = {
     }*/
   },
 
+  compoundPath1: function(compound, options) {
+    if (compound.kind == 'page') {
+      return path.dirname(options.output) + "/page-" + compound.name + ".md";
+    } else if (options.groups) {
+      return util.format(options.output, compound.groupname);
+    } else if (options.classes) {
+      return util.format(options.output, compound.name.replace(/\:/g, '-').replace('<', '(').replace('>', ')'));
+    } else {
+      return options.output;
+    }
+  },
+
   writeCompound: function(compound, contents, references, options) {
-    this.writeFile(this.compoundPath(compound, options), contents.map(function(content) {
+    this.writeFile(this.compoundPath1(compound, options), contents.map(function(content) {
       if (content) {
         return this.resolveRefs(content, compound, references, options);
       }
