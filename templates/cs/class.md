@@ -24,14 +24,17 @@
 ## Members
 
 {{#each filtered.compounds}}
+
 ##### {{title shortproto}} {{anchor refid}}
 
 {{briefdescription}}
 
 {{detaileddescription}}
+
 {{/each}}
 
 {{#each filtered.members}}
+
 ##### {{title proto}} {{anchor refid}}
 
 {{#if enumvalue}}
